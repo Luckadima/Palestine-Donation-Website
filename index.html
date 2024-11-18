@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>My webproject</title>
+
+    <style>
+        #header {
+            margin-top: 1%;
+
+        }
+        #headtitles {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+        }
+        #title {
+            font-size: 30px;
+            margin-left: 10%;
+            font-weight: bold;
+            
+        }
+        #titles {
+            font-size: 13px;
+            font-weight: bold;
+            margin-left: 35%;
+    
+        }
+        nav ul {
+            list-style: none;
+            cursor: pointer;
+            margin-left: -120%;
+            white-space: nowrap; /* Prevent line breaks within each title */
+        }
+
+        nav li {
+            margin-left: 10%;
+            display: inline-block;
+            position: relative;
+        }
+
+
+        nav ul li::after{
+            content: '';
+            height: 3px;
+            width: 0%;
+            background-color: blue;
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            transition: 0.5s;
+        }
+        nav ul li:hover::after{
+            width: 100%;
+        }
+        button {
+            width: 70px;
+            height: 30px;
+            border: 2px solid white;
+            color: black;
+            cursor: pointer;
+            background: linear-gradient(to right, transparent 50%, green 50%);
+            background-size: 200%; /* Ensure background covers double width */
+            background-position: left; /* Start position of background */
+            transition: background-position 0.5s ease; /* Smooth transition */
+        }
+
+        button:hover {
+            background-position: right; /* Shift background on hover */
+            color: black;
+        }
+
+        #img{
+            width: 50px;
+            height: 60px;
+            margin-left: 210%;
+            
+            
+        }
+        #body {
+            width: 100vw; /* Full viewport width */
+            margin-top: 0; /* Removed negative margin */
+            height: auto; /* Allow the height to adjust based on content */
+            position: relative; /* Ensure positioning is relative to its container */
+            margin: 0;
+            padding: 0;
+
+        }
+
+        #body img {
+            width: 100%; /* Make the image cover the entire width of the container */
+            display: block; /* Removes any small space below the image */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Blur effect around the image */
+            height: 40%;
+            object-fit:cover;
+        }
+
+        .animated-text{
+            position: absolute;
+            top: 40%; /* Position the text in the middle vertically */
+            left: 20%; /* Position the text in the middle horizontally */
+            transform: translate(-50%, -50%); /* Initially position it off the right */
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            background-color: rgba(245, 245, 245, 0.1); /* Semi-transparent background */
+
+        }
+        .line-container {
+            height: 60px; /* Adjust as needed */
+            overflow: hidden;
+        }
+
+        .line{
+            text-transform: uppercase;
+            text-align: center;
+            font-size: 40px;
+            line-height: 60px;
+
+        }
+
+        .line:first-child{
+            animation: anim 12s infinite;
+        }
+        @keyframes anim {
+            0% { margin-top: 0; }
+            25% { margin-top: -60px; }
+            50% { margin-top: -120px; }
+            75% { margin-top: -180px; }
+            100% { margin-top: 0; }
+        }
+
+        .text-overlay2{
+            position: absolute;
+            top: 34.3%; /* Position the text in the middle vertically */
+            left: 18%; /* Position the text in the middle horizontally */
+            transform: translate(-50%, -50%); /* Center the text perfectly */
+            color: black;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            background-color: white;
+            text-align: center;
+            border-radius: 3px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            transition: transform 10s ease-out; /* Transition effect for movement */
+            
+        }
+        .text-overlay2{
+            background-color: white;
+            width: 10%;
+            text-align: center;
+            border-radius: 3px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+        }
+        #info {
+            margin-bottom: -40px;
+            max-width: 900px;
+            margin: 50px auto; /* Center the content with margin */
+            padding: 30px;
+            background-color: #fff; /* White background for the section */
+            border: solid;
+            border: 1px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 2.5);
+            
+        }
+
+        h1 {
+            font-family: 'Roboto', sans-serif; /* Cleaner font for the heading */
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        p {
+            font-family: 'Arial', sans-serif; /* Ensures body text is using Arial */
+            color: #555;
+            line-height: 1.6;
+            font-size: 16px;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        /* Optional: add media query for responsiveness */
+        @media (max-width: 168px) {
+            #info {
+                padding: 20px;
+                margin: 20px;
+                max-width: 50px; 
+            }
+
+            h1{
+                font-size: 24px;
+            }
+
+            p {
+                font-size: 14px;
+            }
+        }
+
+
+        .container {
+            justify-content: space-around; /* Optional: Adds space between the divs */
+            margin: 0 auto;
+            gap: 20px; /* Optional: Space between the two sections */
+        }
+
+        #info2 {
+            max-width: 300px; /* Set a smaller width */
+            padding: 30px;
+            background-color: green;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-left: 20px;
+            border: solid;
+            border: 1px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 2.5);
+            
+        }
+
+        h2 {
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        p {
+            font-family: 'Arial', sans-serif;
+            color: #555;
+            line-height: 1.6;
+            font-size: 16px;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+
+
+        .container4 {
+            display: flex;
+            justify-content: space-around; /* Optional: Adds space between the divs */
+            margin: 0 auto;
+            gap: 20px; /* Optional: Space between the two sections */
+            
+        }
+
+        #info4 {
+            max-width: 300px; /* Set a smaller width */
+            padding: 20px;
+            background-color: #fff;
+            border: solid;
+            border: 1px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 2.5);
+            margin-top: -420px;
+            margin-left: 10px;
+        }
+
+        h4 {
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        p {
+            font-family: 'Arial', sans-serif;
+            color: #555;
+            line-height: 1.6;
+            font-size: 16px;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+
+        .container5 {
+            display: flex;
+            justify-content: space-around; /* Optional: Adds space between the divs */
+            margin: 0 auto;
+            gap: 20px; /* Optional: Space between the two sections */
+            
+        }
+
+        #info5 {
+            max-width: 300px; /* Set a smaller width */
+            padding: 20px;
+            background-color: red;
+            border: solid;
+            border: 1px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 2.5);
+            margin-top: -440px;
+            margin-left: 950px;
+        }
+
+        h5 {
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        p {
+            font-family: 'Arial', sans-serif;
+            color: black;
+            line-height: 1.6;
+            font-size: 16px;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        #info1 {
+            margin-top: -40px;
+
+        }
+
+        /* Base styling for all text */
+        h1, h2, h4, h5, p {
+            transition: transform 0.1s ease; /* Smooth transition effect */
+        }
+
+        /* Scale text on hover */
+        #info:hover h1, #info:hover p,
+        #info1:hover h1, #info1:hover p,
+        #info2:hover h2, #info2:hover p,
+        #info4:hover h4, #info4:hover p,
+        #info5:hover h5, #info5:hover p {
+            transform: scale(1.1); /* Slightly enlarge the text */
+        }
+
+                /* Scroll animation styles */
+        .slide-in-left {
+            transform: translateX(-100%);
+            opacity: 0;
+            transition: transform 2.5s ease-out, opacity 2.5s ease-out;
+        }
+        .visible {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        #borderline{
+            margin-bottom: 50%;
+        }
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container6{
+            max-width: 1170px;
+            margin: auto;
+        }
+        .row{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        ul{
+            list-style: none;
+        }
+        .footer{
+            background-color: #24262b;
+            padding: 70px 0;
+            margin-top: 250px;
+        }
+        .footer-col{
+            width: 25%;
+            padding: 0 15px;
+        }
+        .footer-col h6{
+            font-size: 18px;
+            color: #ffffff;
+            text-transform: capitalize;
+            margin-bottom: 35px;
+            font-weight: 500;
+            font-family: 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode';
+            position: relative;
+        }
+
+        .footer-col h6::before{
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            background-color: #e91e63;
+            height: 2px;
+            box-sizing: border-box;
+            width: 50px;
+        }
+
+        .footer-col ul li:not(:last-child){
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a{
+            font-size: 16px;
+            text-transform: capitalize;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 300;
+            color: #bbbbbb;
+            display: block;
+            transition:  all 0.3s ease;
+        }
+        .footer-col ul li a:hover{
+            color: #ffffff;
+            padding-left: 8px;
+        }
+
+        .footer-col .social-links a{
+            display: inline-block;
+            height: 40px;
+            width: 40px;
+            background-color: rgba(255,255,255,0.2);
+            margin: 0 10px 1px 0;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            color: #ffffff;
+            transition:  all 0.5s ease;
+        }
+        .footer-col .social-links a:hover{
+            color: #24262b;
+            background-color: #ffffff;
+
+        }
+
+        @media(max-width: 767px){
+            .footer-col{
+                width: 50%;
+                margin-bottom: 30px;
+            }
+        }
+
+        @media(max-width: 574px){
+            .footer-col{
+                width: 100%;
+                margin-bottom: 30px;
+            }
+        }
+
+
+        #containers{
+            margin-top: 1%;
+            padding-left: 5%;
+            border: solid;
+            border: 1px;
+            margin-right: 35%;
+            margin-left: 5%;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 2.5);
+        }
+        #helpline p1{
+            font-family: 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode';
+            font-size: 15px;
+            position:absolute;
+            margin-right: 40%;
+            margin-top: -2%;
+            padding-left: 2px;
+        }
+
+        #mom{
+            height: 200px;
+            border-radius: 10px;
+            margin-left: -67px;
+            margin-bottom: -3px;
+            margin-top: -20px;
+        }
+        .material-icons{
+            margin-left: 710px;
+            font-size: 20px;
+            margin-top: -1px;
+
+        }
+
+        #info11{
+            font-family: 'Roboto', sans-serif;
+            font-size: 30px;
+            font-weight: bold;
+            padding-left: 55px;
+            margin-top: 9%;
+            
+
+        }
+        
+        #containers {
+                opacity: 0; /* Start hidden */
+                animation: fadeIn 8s ease forwards; /* Apply the fade-in animation */
+            }
+
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        #translate-btn {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        #donation-container {
+            margin: 20px auto;
+            padding: 20px;
+            width: 50%;
+            max-width: 400px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-right: 20px;
+            margin-top: -200px;
+            border: solid;
+            border: 1px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 2.5);
+        }
+        #donation-amount {
+            font-size: 2em;
+            font-weight: bold;
+            color: #4caf50;
+            margin-left: 70px;
+        }
+
+        #donation-input-container {
+            display: none;
+            margin-top: 20px;
+        }
+        input[type="number"] {
+            padding: 10px;
+            width: 15%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-left: 79%;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            width: 100px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <div id="header">
+
+        <div id="headtitles">
+            <div>
+                <img  id="img" src="https://admin.international.la-croix.com/assets/8ef3994c-a15b-4411-b026-151609889728?format=webp"  >
+            </div>
+            
+            <p id="title">SavePalestine</p>
+                <nav id="titles">
+                    <ul>
+                        <li>OUR WORK</li>
+                        <li>OUR STORE</li>
+                        <li>ABOUT US</li>
+                        <li>GET INVOLVED</li>
+                        <button id="donate">DONATE</button>
+                    </ul>
+                </nav>
+        </div>
+
+        <div id="donation-input-container">
+            <input type="number" id="donation-input" placeholder="Enter donation amount" min="1">
+        </div>
+
+        <div id="body">
+            <img src="https://i.guim.co.uk/img/media/d7caccf6c8f28c3c020c3c54f3c8e7605b2e4f21/0_149_5226_3136/master/5226.jpg?width=1200&quality=85&auto=format&fit=max&s=b0599ab3b125fa71c9ff0523d7ef253f" >
+            </div>
+
+
+
+
+
+        </div>
+
+
+        <div class="animated-text">
+            <div class="line-container">
+                <div class="line">Stop this war</div>
+                <div class="line">Save a life</div>
+                <div class="line">Bring peace</div>
+                <div class="line">Donate!</div>
+            </div>
+        </div>
+
+
+        <div id="info" class="slide-in-left">
+            <h1>How did the war beign</h1>
+            <p>The Israeli-Palestinian conflict began in 
+                the early 20th century, rooted in the 
+                competing nationalist movements of Jews 
+                and Arabs in the region of Palestine. 
+                Tensions escalated during the British 
+                Mandate period, when Jewish immigration 
+                increased due to persecution in Europe, 
+                and the 1917 Balfour Declaration promised 
+                support for a Jewish homeland. In 1947, 
+                the United Nations proposed a partition 
+                to create separate Jewish and Arab states, 
+                which was accepted by Jews but rejected by 
+                Arabs. On May 14, 1948, Israel declared 
+                independence, prompting neighboring Arab 
+                countries—Egypt, Jordan, Syria, Iraq, and 
+                Lebanon—to launch an attack on Israel. 
+                Despite being outnumbered, Israel emerged 
+                victorious, expanding its territory beyond 
+                the UN plan, leading to the displacement of 
+                hundreds of thousands of Palestinian Arabs, 
+                known as the Nakba. This set the stage for 
+                ongoing territorial disputes, particularly 
+                over the West Bank, Gaza Strip, and East 
+                Jerusalem, and the conflict has since been 
+                marked by several wars, uprisings, and 
+                peace attempts. The U.S. is a key ally of 
+                Israel, while Arab nations, along with Iran 
+                and Palestinian groups like Hamas, have 
+                supported Palestinian claims, contributing 
+                to the complex and unresolved nature of the 
+                conflict.</p>
+        </div>
+
+
+        <div id="info1" class="slide-in-left">
+            <h1>How to stop this</h1>
+        </div>
+
+        <div class="container">
+            <div id="info2" class="slide-in-left">
+                <h2>Diplomatic Negotiations</h2>
+                <p>Promoting open and continuous dialogue between Israeli and 
+                    Palestinian leaders is essential. International mediators, 
+                    including the United Nations and influential nations, can facilitate
+                    peace talks and work toward mutual agreements. A renewed commitment 
+                    to peace treaties may offer a pathway to de-escalating hostilities.</p>
+        </div>
+
+        <div class="container4" >
+            <div id="info4" class="slide-in-left">
+                <h4>Economic and Humanitarian Support</h4>
+                <p> Economic initiatives that focus on rebuilding infrastructure
+                    and supporting job creation for Palestinians can improve 
+                    daily life and reduce desperation. Humanitarian aid from 
+                    global organizations, including healthcare and education 
+                    programs, can foster stability and counter the root causes 
+                    of unrest.</p>
+            </div>
+        </div>
+
+        
+        <div class="container5">
+            <div id="info5" class="slide-in-left">
+                <h5>Grassroots Peace Efforts</h5>
+                <p> Local peace initiatives between communities, including joint 
+                    educational and cultural exchanges, can foster empathy 
+                    and understanding. Organizations working on the ground to bring Israelis 
+                    and Palestinians together in collaborative projects help to bridge divides 
+                    and build lasting trust.</p>
+            </div>
+        </div>
+
+        <div id="info11" class="slide-in-left">
+            <h7>One of the Victims</h7>
+          </div>
+
+
+        <div id="containers" class="disapperthenappaer">
+            <i  id="translate-btn" class="material-icons">&#xe8e2;</i>
+            <div id="helpline">
+                <img id="mom" src="https://img.stablecog.com/insecure/1920w/aHR0cHM6Ly9iLnN0YWJsZWNvZy5jb20vNzc1YWY5YzMtMjg4YS00YTQwLWIyOGItY2FjNDEwOGEzZTEyLmpwZWc.webp" width="200px">
+                <p1 id="text">the paletines relief fund has been an invaluable source of support for countless families affected by the recent disaster their generous donations have provided essential aid allowing us to purchase food medicine and clothing the funds assistance has not only met our immediate needs but has also given us hope for the future enabling us to rebuild our lives and regain a sense of normalcy</p1>
+            </div>
+        </div>
+
+        <div id="donation-container">
+            <h1>Total Donations</h1>
+            <p id="donation-amount">$22 301 563.20</p>
+        </div>
+
+
+
+
+
+        <footer class="footer">
+            <div class="container6">
+                <div class="row">
+                    <div class="footer-col">
+                        <h6>Company</h6>
+                        <ul>
+                            <li><a href="#">about us</a></li>
+                            <li><a href="#">our services</a></li>
+                            <li><a href="#">privacy policy</a></li>
+                            <li><a href="#">affilate program</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col">
+                        <h6>Get Help</h6>
+                        <ul>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">shipping</a></li>
+                            <li><a href="#">returns</a></li>
+                            <li><a href="#">order returns</a></li>
+                            <li><a href="#">payment option</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col">
+                        <h6>Online Shop</h6>
+                        <ul>
+                            <li><a href="#">watch</a></li>
+                            <li><a href="#">bag</a></li>
+                            <li><a href="#">shoes</a></li>
+                            <li><a href="#">dress</a></li>
+                        </ul>
+                    </div>
+
+
+                    <div class="footer-col">
+                        <h6>Follow Us</h6>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+
+                    
+                </div>
+
+            </div>
+        </footer>
+
+
+
+
+    </div>
+
+
+    <script>
+        function handleScroll() {
+            const elements = document.querySelectorAll('.slide-in-left');
+            elements.forEach((el) => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    el.classList.add('visible');
+                }
+            });
+        }
+    
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('load', handleScroll);
+
+
+
+        let isEnglish = true; // Initialize a flag to track the language
+
+        document.getElementById("translate-btn").addEventListener("click", function() {
+        const textElement = document.getElementById("text");
+        const currentText = textElement.textContent;
+
+        var translations = {
+        "the paletines relief fund has been an invaluable source of support for countless families affected by the recent disaster their generous donations have provided essential aid allowing us to purchase food medicine and clothing the funds assistance has not only met our immediate needs but has also given us hope for the future enabling us to rebuild our lives and regain a sense of normalcy": "الباليتينز ريليف فاند كان مصدر دعم ثمين للعديد من العائلات المتضررة من الكارثة الأخيرة تبرعاتهم السخية قدمت مساعدة أساسية مكنتنا من شراء الطعام والدواء والملابس مساعدة الصندوق لم تلبي فقط احتياجاتنا العاجلة ولكنها أعطتنا أيضًا الأمل في المستقبل مما مكننا من إعادة بناء حياتنا واستعادة الشعور بالطبيعة"
+        };
+
+        // Check the current language and translate accordingly
+        if (isEnglish) {
+            textElement.textContent = translations[currentText];
+            isEnglish = false; // Set flag to indicate Arabic
+        } else {
+            // Iterate through the translations object to find the corresponding English text
+            for (const englishText in translations) {
+            if (translations[englishText] === currentText) {
+                textElement.textContent = englishText;
+                isEnglish = true; // Set flag to indicate English
+                break;
+            }
+            }
+        }
+        });
+
+
+        // Initial total donations
+        let totalDonations = 22301563.20;
+
+        // Get DOM elements
+        const donationAmountElement = document.getElementById('donation-amount');
+        const donateButton = document.getElementById('donate');
+        const donationInputContainer = document.getElementById('donation-input-container');
+        const donationInput = document.getElementById('donation-input');
+
+        // Show the input field when the donate button is clicked
+        donateButton.addEventListener('click', () => {
+            donationInputContainer.style.display = 'block';
+            donationInput.focus(); // Focus on the input field
+        });
+
+        // Add donation when the Enter key is pressed
+        donationInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                const donation = parseFloat(donationInput.value);
+
+                if (!isNaN(donation) && donation > 0) {
+                    // Add the donation amount to the total
+                    totalDonations += donation;
+
+                    // Update the displayed total donations
+                    donationAmountElement.textContent = `$${totalDonations.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+                    // Clear and hide the input field
+                    donationInput.value = '';
+                    donationInputContainer.style.display = 'none';
+                } else {
+                    alert('Please enter a valid donation amount.');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
